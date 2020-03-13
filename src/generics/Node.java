@@ -21,7 +21,23 @@ public class Node <T> {
     }
     
     public void inserirElemento(Node<T> elemento) {
+        if(this.elemento == null) {
+            this.elemento = elemento.elemento;
+            return;
+        }
         
+        if(this.anterior == null && this.proximo == null) {
+            this.proximo = elemento;
+            this.proximo.anterior = this;
+            return;
+        }
+        
+        Node<T> aux = this;
+        while(aux.proximo != null)
+            aux = aux.proximo;
+        
+        aux.proximo = elemento;
+        aux.proximo.anterior = aux;
     }
 
     /**
